@@ -311,11 +311,15 @@
         const GAS_WEB_APP_URL = ""; 
 
         const mockAgenda = [
-            { Day: 'Day1', Section: '出發', Time: '08:00 - 10:00', Title: '總院東址集合大門出發', Moderator: '', Speaker: '', Location: '總院東址大門' },
-            { Day: 'Day1', Section: '報到與開幕', Time: '10:30 - 11:00', Title: '致詞與開幕儀式', Moderator: '林頌然 教授', Speaker: '高嘉宏 副院長', Location: '住宿大樓 2F' },
-            { Day: 'Day1', Section: '專題演講 I', Time: '11:00 - 11:30', Title: '科學家之倫理素養', Moderator: '林頌然 教授', Speaker: '蔡甫昌 主任', Location: '住宿大樓 2F' },
-            { Day: 'Day1', Section: '專題演講 II', Time: '13:30 - 13:55', Title: '研究發展策略分享', Moderator: '楊鎧鍵 教授', Speaker: '陳慧玲 主任', Location: '住宿大樓 2F' },
-            { Day: 'Day2', Section: '專題演講 III', Time: '09:00 - 10:30', Title: 'AI 於醫學研究之應用', Moderator: '楊鎧鍵 教授', Speaker: '蔡奕豪 教授', Location: '住宿大樓 2F' }
+            { Day: 'Day1', Section: '出發', Time: '08:00 - 10:00', Title: '總院東址集合大門出發', Moderator: '', ModeratorDept: '', Speaker: '', SpeakerDept: '', Location: '總院東址大門' },
+            { Day: 'Day1', Section: '報到與開幕', Time: '10:30 - 11:00', Title: '致詞與開幕儀式', Moderator: '林頌然 教授', ModeratorDept: '醫學研究部', Speaker: '高嘉宏 副院長', SpeakerDept: '院長室', Location: '住宿大樓 2F' },
+            { Day: 'Day1', Section: '專題演講 I', Time: '11:00 - 11:30', Title: '科學家之倫理素養', Moderator: '林頌然 教授', ModeratorDept: '醫學研究部', Speaker: '蔡甫昌 主任', SpeakerDept: '倫理中心', Location: '住宿大樓 2F' },
+            { Day: 'Day1', Section: '專題演講 I', Time: '11:30 - 12:00', Title: '教學部講題：醫事人員研究支持', Moderator: '林頌然 教授', ModeratorDept: '醫學研究部', Speaker: '楊志偉 副主任', SpeakerDept: '教學部', Location: '住宿大樓 2F' },
+            { Day: 'Day1', Section: '專題演講 II', Time: '13:30 - 13:55', Title: '教學部講題：研究發展策略', Moderator: '楊鎧鍵 教授', ModeratorDept: '醫學研究部', Speaker: '陳慧玲 主任', SpeakerDept: '教學部', Location: '住宿大樓 2F' },
+            { Day: 'Day1', Section: '專題演講 II', Time: '13:55 - 14:20', Title: '個人研究與出國進修分享', Moderator: '楊鎧鍵 教授', ModeratorDept: '醫學研究部', Speaker: '鐘桂彬 助理教授', SpeakerDept: '檢驗醫學部', Location: '住宿大樓 2F' },
+            { Day: 'Day1', Section: '專題演講 II', Time: '14:20 - 14:45', Title: '如何發起及執行臨床試驗？', Moderator: '楊鎧鍵 教授', ModeratorDept: '醫學研究部', Speaker: '林孟暐 教授', SpeakerDept: '外科部', Location: '住宿大樓 2F' },
+            { Day: 'Day1', Section: '專題演講 II', Time: '14:45 - 15:10', Title: '校內外研究資源應用', Moderator: '楊鎧鍵 教授', ModeratorDept: '醫學研究部', Speaker: '王主科 教授', SpeakerDept: '兒童醫院', Location: '住宿大樓 2F' },
+            { Day: 'Day2', Section: '專題演講 III', Time: '09:00 - 10:30', Title: 'AI 於醫學研究之應用', Moderator: '楊鎧鍵 教授', ModeratorDept: '醫學研究部', Speaker: '蔡奕豪 教授', SpeakerDept: '醫學研究部', Location: '住宿大樓 2F' }
         ];
 
         const mockParticipants = [
@@ -370,7 +374,7 @@
             filtered.forEach(item => {
                 let section = sections.find(s => s.name === item.Section);
                 if (!section) {
-                    section = { name: item.Section, moderator: item.Moderator, items: [] };
+                    section = { name: item.Section, moderator: item.Moderator, moderatorDept: item.ModeratorDept, items: [] };
                     sections.push(section);
                 }
                 section.items.push(item);
@@ -378,14 +382,17 @@
 
             list.innerHTML = sections.map(sec => `
                 <div class="space-y-5">
-                    <div class="agenda-section-header flex items-center justify-between border-b-2 border-[#5e4a6f]/20">
-                        <div class="flex items-center gap-3">
-                            <span class="w-2 h-6 bg-[#5e4a6f] rounded-full"></span>
-                            <h3 class="font-black text-[#5e4a6f] text-base tracking-wide uppercase">${sec.name}</h3>
+                    <div class="agenda-section-header flex flex-col gap-1 border-b-2 border-[#5e4a6f]/20 pb-2">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <span class="w-2 h-6 bg-[#5e4a6f] rounded-full"></span>
+                                <h3 class="font-black text-[#5e4a6f] text-base tracking-wide uppercase">${sec.name}</h3>
+                            </div>
                         </div>
                         ${sec.moderator ? `
-                            <div class="text-[11px] bg-[#d3b4d3]/30 px-3 py-1 rounded-xl border border-[#d3b4d3]/50">
-                                <span class="text-[#534a55] font-black">主持:</span> <span class="text-[#5e4a6f] font-black">${sec.moderator}</span>
+                            <div class="flex items-center gap-2 mt-1">
+                                <span class="text-[10px] bg-[#d3b4d3]/30 px-2 py-0.5 rounded-lg border border-[#d3b4d3]/50 font-black text-[#5e4a6f]">主持單位: ${sec.moderatorDept || '--'}</span>
+                                <span class="text-xs font-black text-[#534a55] italic">主持人: ${sec.moderator}</span>
                             </div>
                         ` : ''}
                     </div>
@@ -394,7 +401,15 @@
                             <div class="bg-white p-5 rounded-3xl border border-gray-100 shadow-sm animate-in fade-in slide-in-from-left-4 agenda-card">
                                 <div class="text-[11px] font-black text-[#5e4a6f]/70 mb-2 uppercase tracking-widest">${item.Time}</div>
                                 <div class="font-black text-[#332d35] text-lg leading-snug">${item.Title}</div>
-                                ${item.Speaker ? `<div class="mt-3 text-xs flex items-center gap-2 font-bold"><span class="bg-[#5e4a6f] text-white px-2 py-0.5 rounded text-[10px] uppercase">Speaker</span><span class="underline decoration-2 decoration-[#d3b4d3] underline-offset-4">${item.Speaker}</span></div>` : ''}
+                                ${item.Speaker ? `
+                                    <div class="mt-3 flex flex-wrap items-center gap-2">
+                                        <span class="bg-[#5e4a6f] text-white px-2 py-0.5 rounded text-[9px] font-black uppercase">Speaker</span>
+                                        <div class="flex items-center gap-1.5">
+                                            <span class="text-[10px] font-black text-[#a397a5]">[${item.SpeakerDept || '單位待定'}]</span>
+                                            <span class="text-sm font-bold text-[#332d35] underline decoration-2 decoration-[#d3b4d3] underline-offset-4">${item.Speaker}</span>
+                                        </div>
+                                    </div>
+                                ` : ''}
                                 ${item.Location ? `<div class="mt-3 text-[11px] text-[#a397a5] flex items-center gap-2 font-black"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path></svg>${item.Location}</div>` : ''}
                             </div>
                         `).join('')}
