@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>115年度臺大醫療體系新進主治醫師與醫事人員研究營</title>
+    <title>115年度臺大醫療體系研究營</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -84,7 +84,7 @@
                 host: "林頌然 教授",
                 items: [
                   { time: "10:00", endTime: "10:30", topic: "報到與開幕式", speaker: "全體人員" },
-                  { time: "10:30", endTime: "11:00", topic: "院長室長官致詞 I", speaker: "高嘉宏 副院長", dept: "院長室" }
+                  { time: "10:30", endTime: "11:00", topic: "院長室長官致詞", speaker: "余忠仁 院長", dept: "院長室" }
                 ]
               },
               {
@@ -104,11 +104,10 @@
                   { time: "13:55", endTime: "14:20", topic: "個人研究與出國進修分享", speaker: "鐘桂彬 助理教授", dept: "檢驗醫學部" },
                   { time: "14:20", endTime: "14:45", topic: "如何發起及執行臨床試驗？", speaker: "劉志銘 教授", dept: "內科部" },
                   { time: "14:45", endTime: "15:10", topic: "透過生醫設計流程解決臨床問題", speaker: "黃博浩 副教授", dept: "外科部" },
-                  { time: "15:10", endTime: "15:35", topic: "從站穩腳步到精益求精：個人永續發展之路", speaker: "陳慧玲 主任", dept: "教學部" },
-                  { time: "15:35", endTime: "15:45", topic: "院長室長官致詞 II", speaker: "余忠仁 院長", dept: "院長室" }
+                  { time: "15:10", endTime: "15:35", topic: "從站穩腳步到精益求精：個人永續發展之路", speaker: "陳慧玲 主任", dept: "教學部" }
                 ]
               },
-              { time: "15:45", endTime: "16:00", topic: "中場休息 (Coffee Break)", type: "break" },
+              { time: "15:35", endTime: "16:00", topic: "中場休息 (Coffee Break)", type: "break" },
               {
                 section: "專題演講 III",
                 title: "醫療結合研究的實踐與突破",
@@ -117,7 +116,7 @@
                   { time: "16:00", endTime: "16:20", topic: "護理部研究分享", speaker: "鄭靜宜 護理師", dept: "護理部" },
                   { time: "16:20", endTime: "16:40", topic: "檢驗醫學部研究分享", speaker: "陳怡婷 醫檢師", dept: "檢驗醫學部" },
                   { time: "16:40", endTime: "17:00", topic: "藥劑部研究分享", speaker: "林欣儀 藥師", dept: "藥劑部" },
-                  { time: "17:00", endTime: "17:30", topic: "讓種子發光：總分院育苗計畫分享", speaker: "楊偉勛 教授、李志國 助理教授" }
+                  { time: "17:00", endTime: "17:30", topic: "讓種子發光：總分院育苗計畫分享", speaker: "楊偉勛 教授" }
                 ]
               },
               { time: "17:30", endTime: "18:30", topic: "Check in 辦理住房", location: "飯店櫃檯", type: "logistic" },
@@ -320,7 +319,7 @@
                     <img src="https://i.meee.com.tw/AAiaMSR.png" alt="Logo" className="w-9 h-9 object-contain" />
                     <div className="flex flex-col">
                         <span className="text-[10px] text-gray-500 font-bold tracking-widest uppercase mb-0.5">臺大醫療體系</span>
-                        <span className="text-[15px] font-bold text-[#5e4a6f] leading-none">115年度新進主治醫師與醫事人員研究營</span>
+                        <span className="text-[15px] font-bold text-[#5e4a6f] leading-none">115年度研究營</span>
                     </div>
                 </div>
             </div>
@@ -550,7 +549,7 @@
                             <div className="absolute left-4 top-3.5 text-gray-400"><Icon name="Search" size={20} /></div>
                             <input 
                                 type="text" 
-                                placeholder="搜尋姓名、員工編號、單位(點人名可看詳細)..." 
+                                placeholder="搜尋姓名、員工編號、單位..." 
                                 className="w-full pl-11 pr-4 py-3.5 rounded-xl border border-gray-200 bg-white focus:border-[#5e4a6f] focus:ring-1 focus:ring-[#5e4a6f] outline-none text-[15px] transition-all placeholder-gray-400 shadow-sm" 
                                 value={search} 
                                 onChange={e => setSearch(e.target.value)} 
@@ -966,5 +965,3 @@
     </script>
 </body>
 </html>
-
-
